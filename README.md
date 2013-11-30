@@ -46,8 +46,10 @@ French:
     - 146-170.txt
 - Romances
 [O ](http://www.gutenberg.org/ebooks/11417)
+    - 171-188.txt
 - Small Fiction
 [O ](http://www.gutenberg.org/ebooks/4017)
+    - 189-200.txt
 
 German:
 
