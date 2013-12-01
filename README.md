@@ -56,8 +56,10 @@ German:
 - This text has a lot of cool stuff in it. Like multiple works, OCRd all German.
   Wouldn't be unreasonable to get all of our German stuff from this single work
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_1129679)
+    - 001-027.txt
 - An autobiography
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_345123)
+    - 028-042.txt
 - Fiction Prose
 [O ](http://www.gutenberg.org/ebooks/6852)
 [O ](http://www.gutenberg.org/ebooks/2527)
