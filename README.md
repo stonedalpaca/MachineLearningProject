@@ -56,6 +56,9 @@ German:
 - This text has a lot of cool stuff in it. Like multiple works, OCRd all German.
   Wouldn't be unreasonable to get all of our German stuff from this single work
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_1129679)
+  - volume 06:
+    -- Heinrich Heine: Translated by Charles Leland
+        - 028-035.txt
 - An autobiography
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_345123)
 - Fiction Prose
