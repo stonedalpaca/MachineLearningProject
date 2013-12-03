@@ -69,6 +69,9 @@ German:
     - 101-107.txt  JEAN PAUL PAGE : Translated by C. T. Brooks
     - 108-117.txt  WILHELM VON HUMBOLDT : Translated by James Taft Hatfield
     - 118-127.txt  AUGUST WILHELM SCHLEGEL: Translated by John Black
+    - 128-137.txt  FRIEDRICH SCHLEGEL : Translated by Paul Bernard Thomas
+    - 138-147.txt  LUDWIG TIECK: Translated by Frederic H. Hedge
+    - 148-160.txt  HEINRICH VON KLEIST: Translated by Frances H. King
 
 - An autobiography
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_345123)
