@@ -57,9 +57,9 @@ German:
   Wouldn't be unreasonable to get all of our German stuff from this single work
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_1129679)
     - 001-027.txt
-    - 028-035.txt  Heinrich Heine: Translated by Charles Leland
-    - 036-040.txt  FRANZ GRILLPARZER: Translated by Alfred Remy
-    - 041-045.txt  LUDWIG VAN BEETHOVEN: Translated by J. S. Shedlock
+    - 185-192.txt  Heinrich Heine: Translated by Charles Leland
+    - 193-197.txt  FRANZ GRILLPARZER: Translated by Alfred Remy
+    - 043-045.txt & 198-199.txt  LUDWIG VAN BEETHOVEN: Translated by J. S. Shedlock
     - 046-050.txt  Friedrich Schleiermacher: Translated by George Ripley
     - 051-060.txt  Johauin Gottlieb Fichte: Translated by Frederic H. Hedge
     - 061-070.txt  Friedrich Wilhelm Joseph von Schelling: Translated by J. Elliot Cabot
@@ -72,6 +72,8 @@ German:
     - 128-137.txt  FRIEDRICH SCHLEGEL : Translated by Paul Bernard Thomas
     - 138-147.txt  LUDWIG TIECK: Translated by Frederic H. Hedge
     - 148-160.txt  HEINRICH VON KLEIST: Translated by Frances H. King
+    - 161-174.txt  JAKOB WASSERMANN PAGE: Translated by Julia Franklin
+    - 175-184.txt & 200.txt  BERNHARD KELLERMANN : Translated by KATHARINE ROYCE
 
 - An autobiography
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_345123)
