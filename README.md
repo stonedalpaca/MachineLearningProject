@@ -60,6 +60,15 @@ German:
     - 028-035.txt  Heinrich Heine: Translated by Charles Leland
     - 036-040.txt  FRANZ GRILLPARZER: Translated by Alfred Remy
     - 041-045.txt  LUDWIG VAN BEETHOVEN: Translated by J. S. Shedlock
+    - 046-050.txt  Friedrich Schleiermacher: Translated by George Ripley
+    - 051-060.txt  Johauin Gottlieb Fichte: Translated by Frederic H. Hedge
+    - 061-070.txt  Friedrich Wilhelm Joseph von Schelling: Translated by J. Elliot Cabot
+    - 071-080.txt  Jacob and Wilhelm Grimm: Translated by Margaret Hunt
+    - 081-090.txt  Joseph von Eichendorff : Translated by A. L. W. Wister
+    - 091-100.txt  Friedrich Baron de la Motle-Fouque: Translated by F. E. Bunnett
+    - 101-107.txt  JEAN PAUL PAGE : Translated by C. T. Brooks
+    - 108-117.txt  WILHELM VON HUMBOLDT : Translated by James Taft Hatfield
+    - 118-127.txt  AUGUST WILHELM SCHLEGEL: Translated by John Black
 
 - An autobiography
 [O ](http://vufind.carli.illinois.edu/vf-uiu/Record/hat_345123)
