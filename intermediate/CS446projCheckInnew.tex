@@ -1,0 +1,171 @@
+\documentclass[11pt,letterpaper]{article}
+\oddsidemargin 0in
+\evensidemargin 0in
+\textwidth 6.5in
+\topmargin -0.5in
+\textheight 9.0in
+\usepackage{hyperref}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{natbib} % for references
+\usepackage[usenames,dvipsnames]{xcolor}
+\newcommand{\blue}[1]{\textcolor{RoyalBlue}{#1}}
+\newcommand{\fillme}[1]{\blue{\texttt{[Insert #1]}}}
+\newcommand{\instructions}[1]{\blue{\textit{#1}}}
+% uncomment the next two lines if you want the instructions to disappear.
+%\renewcommand{\instructions}[1]{}
+\usepackage{amsmath}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\tab}{\hspace*{2em}}
+
+\title { CS446 Class Project\\ \large Determining Language of Origin in
+Hand-Translated Texts from the 19th Century } 
+\author{ Ben Seefeldt (seefldt2)
+         \\ Sean Wilner (swilner2) \\ } 
+\date{\today} 
+
+\begin{document} \maketitle
+
+\begin{abstract}
+%\instructions{Very briefly, summarize your task, your model and your main results}
+We will use one-vs.-all multiclass classification to determine the original
+language of texts translated into English. We will use a dataset gathered from
+the public domain ebook source, Project
+Gutenberg.\footnote{\url{http://www.gutenberg.org/}} By calcuating a variety of
+features over our dataset using the Standford CoreNLP
+toolset\footnote{\url{http://nlp.stanford.edu/software/corenlp.shtml}} we hope
+to isolate features that will allow us to classify texts based exclusively on
+their English translation.
+\end{abstract}
+
+\section{Introduction} 
+\label{sec:introduction}
+With an increasingly ubiquitous global society,
+language barriers force large scale translation of text bodies into a myriad of
+languages.  In order to better track the flow of information in such a mobile
+system, it would be beneficial to be able to determine the language of origin
+of a translated text.  Specifically, we would like to be able to classify the
+original language in which a text was written given a translation of the text
+into English.   As an example case, we will tackle binary classification
+between French and German languages of origin.  These languages were chosen due
+to the high availability of hand translated texts and their dissimilarity
+despite both being Indo-European languages.  These classiﬁcation tasks will be
+completed over a variety of features pulled from the source text focusing on
+length of sentences, frequency of words, and part of speech ordering.\\
+
+\section*{Background}
+Natural Language Processing is an extremely large field, with many different
+applications. One particular subfield of NLP is machine translation. In a way,
+the work we are hoping to do is a return to traditional forms of human
+translation.
+
+While there has been significant work in the field of authorship attribution,
+\cite{one}\cite{two}\cite{three} we are unaware of any projects which are
+focused on the problem of original language. The existing work can provide a
+good grounding for the types of features available, and what types of approaches
+give the best classification.
+
+
+
+
+\section{Task and Data}
+As our task has two parts, our solution is best understood in it's respective
+components: 
+
+\begin{itemize} 
+  \item Collect data, clean it, and distill feature sets from the cleaned data
+  \item Multi-class classiﬁcation over the distilled features 
+\end{itemize}
+
+\subsection{The Data} In order to amass a large text body, scanned pages from a
+variety of translated books were taken and run through object character
+recognition.  The generated text was then sanitized by hand for OCR errors.\\
+
+The sanitized text was run through {\it The Stanford Natural Language
+Processing Group}'s CoreNLP parsing engine and part of speech sequences were
+extracted.  The text was also sampled for all word counts and sentence count
+length to provide our learning algorithms with features.
+
+\subsection{The Task} In order to predict the language of origin, we plan
+on using two main learning algorithms and compairing their efficacy.  First, we
+will train two HMMs on texts from each language separately using the tag
+sequences as an initialization.  The resulting HMMs will provide us with
+likelihood estimates that a given test text's part of speech sequence would be
+generated given either of the underlying languages as a language of origin.
+Second, we will train a binary classifier using AdaBoost on the bag-of-words
+frequency counts.  Our experiments will be run using 5-fold cross-validation,
+and the resulting accuracies of all 10 classifiers will be used to create one
+classifier using a weighted bagging algorithm.  This algorithm will then be
+tested on a reserved test-set to obtain final accuracies.
+
+\section{The Models}
+\label{sec:models}
+\subsection{Baseline Models}
+\label{sec:baseline-models}
+\instructions{In order to know how difficult the task is and how well we are doing, we need to know how well a suitable baseline model would perform. Define a baseline model for your task. This may not necessarily be a learned model.}
+The simplest baseline model is a weighted chance model which assigns a likelihood to each language based on the ratio of it’s occurrence in the training set.
+\subsection{Existing Models}
+\label{sec:existing-models}
+\instructions{If people have worked on this task before, summarize (and cite) some of the existing models}
+To our knowledge, our task is virgin territory and no other models exist.  While there is a plethora of research into machine translation and language detection, detection of original language seems to be an unstudied field.
+\subsection{Proposed Model(s)}
+\label{sec:proposed-models}
+\instructions{Your models and your procedure for learning them go here. Describe both in detail, even if the learning procedure is standard.} We will learn two models with distinct feature sets and learning algorithms.  The first is a simple binary classifier using AdaBoost on the bag-of-words frequency counts of the training texts.  In this classifier our data set consists of words and their relative frequency of occurrence in the text, and our learning algorithm functions by minimizing the weighted error at each training step for a weak learner.  \\
+
+First, we initialize the weights for each training example to $1/N$ where $N$
+is the number of training examples in our dataset.  At each iteration the weak
+learner is trained to minimize the weighted error.  The weighted error is
+calculated as follows:\\ 
+$$e_t = \frac{[\Sigma_i D_t(i)I(y_i\neq h_t(x_i))]}{\Sigma_iD_t(i)}$$\\
+Where $D_t(i)$ is the weight of example $i$ at iteration $t$ and $I$ is the indicator function.  This error is then used to calculate the weight assigned in our AdaBoost model to the hypothesis at iteration $t$ as follows:\\
+weight $$\alpha_t = \frac{ln((1-e_t)/e_t)}{2}$$\\
+This weight is then used to calculate the updated weights to each training example:\\
+$$D_{t+1}(i) = \frac{D_t(i)\cdot exp(-\alpha_ty_ih_t(x_i))}{S}$$\\
+Where $S$ is a normilzation sum to ensure that $D$ remains a probability distribution.\\
+Once this has been iterated some number of times $T$, the resulting list of $T$ weak classifiers is combined using their weights to generate a single classifier which is the sum of all the outputs of the $T$ classifiers multiplied by each of their $T$ weights $\alpha$ respectively.\\
+
+In short, this method weights a sequence of weak classifiers where subsequent classifiers are biased towards correctly classifying those examples which previous classifiers failed to correctly classify.\\
+
+Our second model is a Hidden Markov Model (HMM) which runs on a feature set of part-of-speech tagged sequences.  In general, HMMs are generative models which function by having a so called hidden process which governs what hidden state the model is in at any time.  This hidden process is hidden  in the sense that it is not observable from the raw dataset.  The process is also Markovian in nature (each state transition depends solely upon the previous state).  In each hidden state the model has a different generative distribution.  That is, in each state there is some probability distribution which corresponds to the probability of finding different words while the text is in a particular {\it hidden} state.\\
+
+In the case of our model, this hidden state is the part of speech.\\
+
+Traditionally, HMMs would not be used for this task.  However, our plan is to train separate HMMs for each label, and then examine the probability that either could generate the observed sentence to produce a classification measurement.\\
+
+{\it We still need to include the update rules and math behind the learning for HMMs in our write-up.}
+
+
+\section{Experiments}
+
+\subsection{Experimental Hypothesis}
+The question we hope to answer is whether certain different languages affect the English translations of those texts, and if those differences are systematic enough to predict a text’s language of origin based solely upon the translated text.
+
+\subsection{Experimental Setup}
+This is the section of the project we currently find ourselves in. Several questions remain unanswered, which we will be working on during the upcoming time before the final deadline.
+
+
+\section{Experimental Results} Our testing set-up has some issues with the
+libraries used for syntactic text analysis.  We are working on ironing those
+out and hope to have results shortly.
+
+\section{Conclusion}
+Soon, this will be the section where our final results will be put. 
+
+\section*{Bibliography}
+\bibliographystyle{plain}
+\nocite{*}
+\bibliography{mybib}
+
+\section*{Schedule}
+\begin{description}
+	\item[Complete] Book selection complete
+	\item[Complete] Feature selection and creation complete
+	\item[Complete] Detailed algorithm/test plan complete
+	\item[11-6] Implementation functional
+	\item[11-9] Test runs complete
+	\item[12-12] Write-up complete
+\end{description}
+
+
+\end{document}
